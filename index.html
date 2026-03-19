@@ -1,0 +1,1344 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arrai Beach | Punta del Diablo</title>
+  <meta
+    name="description"
+    content="Arrai Beach, parador en Playa de la Viuda, Punta del Diablo. Cocina de mar, tapeo, sándwiches, ensaladas, postres, cócteles y reservas por WhatsApp."
+  />
+  <style>
+    :root{
+      --bg:#f6f0e8;
+      --sand:#efe3d2;
+      --card:#ffffff;
+      --text:#1b1b1b;
+      --muted:#666057;
+      --line:#e5d6c4;
+      --dark:#0e1a22;
+      --accent:#d97b2d;
+      --accent-2:#d64d2f;
+      --sea:#5da8c7;
+      --white:#fff;
+      --shadow:0 18px 40px rgba(0,0,0,.10);
+      --radius:24px;
+      --container:1200px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    .container{
+      width:min(var(--container), calc(100% - 32px));
+      margin-inline:auto;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 20px;
+      border-radius:999px;
+      font-weight:700;
+      transition:.2s ease;
+      border:1px solid transparent;
+      cursor:pointer;
+    }
+
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{
+      background:var(--white);
+      color:var(--dark);
+      box-shadow:var(--shadow);
+    }
+    .btn-secondary{
+      background:rgba(255,255,255,.12);
+      border-color:rgba(255,255,255,.25);
+      color:var(--white);
+      backdrop-filter:blur(12px);
+    }
+    .btn-dark{
+      background:var(--dark);
+      color:var(--white);
+    }
+    .btn-outline{
+      border-color:var(--line);
+      color:var(--text);
+      background:transparent;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(246,240,232,.86);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(0,0,0,.06);
+    }
+
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:14px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+    }
+
+    .brand-mark{
+      width:52px;
+      height:52px;
+      border-radius:18px;
+      background:#fff;
+      padding:8px;
+      box-shadow:var(--shadow);
+      object-fit:contain;
+    }
+
+    .brand-copy{
+      min-width:0;
+    }
+
+    .brand-copy strong{
+      display:block;
+      font-size:1rem;
+      letter-spacing:.02em;
+    }
+
+    .brand-copy span{
+      display:block;
+      color:var(--muted);
+      font-size:.83rem;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:22px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .nav a{
+      font-weight:600;
+      color:#3b372f;
+      font-size:.96rem;
+    }
+
+    .hero{
+      position:relative;
+      min-height:92vh;
+      display:flex;
+      align-items:stretch;
+      overflow:hidden;
+      color:var(--white);
+      background:#000;
+    }
+
+    .hero-bg{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:saturate(1.05);
+    }
+
+    .hero-overlay{
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(8,16,22,.76) 0%, rgba(8,16,22,.56) 38%, rgba(8,16,22,.25) 100%),
+        linear-gradient(180deg, rgba(8,16,22,.15) 0%, rgba(8,16,22,.30) 100%);
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      width:100%;
+      padding:72px 0 40px;
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:28px;
+      align-items:end;
+    }
+
+    .hero-copy{
+      max-width:720px;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 16px;
+      border-radius:999px;
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.18);
+      backdrop-filter:blur(14px);
+      font-size:.86rem;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+
+    .hero h1{
+      font-size:clamp(3rem, 8vw, 6rem);
+      line-height:.95;
+      margin:0;
+      letter-spacing:-.05em;
+      max-width:900px;
+    }
+
+    .hero p{
+      font-size:1.14rem;
+      line-height:1.7;
+      color:rgba(255,255,255,.86);
+      max-width:700px;
+      margin:20px 0 0;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:28px;
+    }
+
+    .hero-card{
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.16);
+      backdrop-filter:blur(18px);
+      padding:24px;
+      border-radius:32px;
+      align-self:end;
+    }
+
+    .hero-card-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .mini-box{
+      background:rgba(255,255,255,.12);
+      border-radius:18px;
+      padding:14px;
+      font-size:.92rem;
+      line-height:1.45;
+    }
+
+    .mini-box strong{
+      display:block;
+      margin-bottom:4px;
+      color:#fff;
+    }
+
+    .quick-box{
+      margin-top:14px;
+      background:#fff;
+      color:var(--text);
+      border-radius:24px;
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+
+    .quick-box small{
+      display:block;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      font-weight:700;
+      margin-bottom:8px;
+    }
+
+    .quick-box h3{
+      margin:0 0 8px;
+      font-size:1.8rem;
+      letter-spacing:-.04em;
+    }
+
+    .quick-box p{
+      margin:0;
+      color:var(--muted);
+      font-size:.95rem;
+      line-height:1.6;
+    }
+
+    .quick-actions{
+      display:flex;
+      gap:10px;
+      margin-top:16px;
+    }
+
+    .section{
+      padding:88px 0;
+    }
+
+    .section-head{
+      max-width:760px;
+      margin-bottom:34px;
+    }
+
+    .section-head .kicker{
+      color:var(--accent-2);
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.78rem;
+      font-weight:800;
+      margin-bottom:12px;
+      display:block;
+    }
+
+    .section-head h2{
+      font-size:clamp(2rem, 4vw, 3.3rem);
+      line-height:1.04;
+      margin:0;
+      letter-spacing:-.04em;
+    }
+
+    .section-head p{
+      margin:14px 0 0;
+      color:var(--muted);
+      line-height:1.75;
+      font-size:1.05rem;
+    }
+
+    .experience{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .experience-copy .stats{
+      margin-top:26px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+
+    .stat{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:20px;
+      box-shadow:var(--shadow);
+    }
+
+    .stat strong{
+      display:block;
+      font-size:1.8rem;
+      letter-spacing:-.04em;
+      margin-bottom:6px;
+    }
+
+    .stat span{
+      color:var(--muted);
+      line-height:1.5;
+      font-size:.94rem;
+    }
+
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:16px;
+    }
+
+    .stack{
+      display:grid;
+      gap:16px;
+    }
+
+    .photo{
+      position:relative;
+      border-radius:28px;
+      overflow:hidden;
+      min-height:260px;
+      box-shadow:var(--shadow);
+    }
+
+    .photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .photo.tall{min-height:540px}
+    .photo.medium{min-height:260px}
+    .photo.small{min-height:210px}
+    .photo-caption{
+      position:absolute;
+      left:16px;
+      right:16px;
+      bottom:16px;
+      background:rgba(14,26,34,.56);
+      color:#fff;
+      backdrop-filter:blur(14px);
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:16px;
+      padding:12px 14px;
+      font-size:.92rem;
+      line-height:1.45;
+    }
+
+    .cards-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .info-card{
+      background:var(--dark);
+      color:#fff;
+      border-radius:28px;
+      padding:28px;
+      box-shadow:var(--shadow);
+    }
+
+    .info-card h3{
+      margin:0 0 10px;
+      font-size:1.45rem;
+      letter-spacing:-.03em;
+    }
+
+    .info-card p{
+      margin:0;
+      color:rgba(255,255,255,.74);
+      line-height:1.7;
+      font-size:.98rem;
+    }
+
+    .menu-wrap{
+      display:grid;
+      gap:24px;
+    }
+
+    .menu-columns{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:20px;
+    }
+
+    .menu-card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:30px;
+      padding:28px;
+      box-shadow:var(--shadow);
+    }
+
+    .menu-card h3{
+      margin:0 0 18px;
+      font-size:1.8rem;
+      letter-spacing:-.04em;
+      color:var(--dark);
+    }
+
+    .menu-list{
+      display:grid;
+      gap:16px;
+    }
+
+    .menu-item{
+      padding-bottom:14px;
+      border-bottom:1px dashed #ddd1c3;
+    }
+
+    .menu-item:last-child{
+      padding-bottom:0;
+      border-bottom:none;
+    }
+
+    .menu-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+      margin-bottom:4px;
+    }
+
+    .menu-name{
+      font-weight:800;
+      font-size:1.02rem;
+      line-height:1.4;
+    }
+
+    .menu-price{
+      font-weight:800;
+      color:var(--accent-2);
+      white-space:nowrap;
+    }
+
+    .menu-desc{
+      color:var(--muted);
+      font-size:.94rem;
+      line-height:1.55;
+    }
+
+    .bar-section{
+      background:linear-gradient(135deg, #10212c 0%, #172e3b 100%);
+      color:#fff;
+      border-radius:34px;
+      padding:34px;
+      box-shadow:var(--shadow);
+    }
+
+    .bar-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:18px;
+    }
+
+    .bar-card{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:24px;
+      padding:22px;
+    }
+
+    .bar-card h4{
+      margin:0 0 10px;
+      font-size:1.2rem;
+    }
+
+    .bar-card p{
+      margin:0;
+      color:rgba(255,255,255,.78);
+      line-height:1.65;
+      font-size:.95rem;
+    }
+
+    .location-grid{
+      display:grid;
+      grid-template-columns:.92fr 1.08fr;
+      gap:24px;
+      align-items:start;
+    }
+
+    .location-card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:30px;
+      padding:28px;
+      box-shadow:var(--shadow);
+      display:grid;
+      gap:14px;
+    }
+
+    .location-box{
+      background:var(--sand);
+      border-radius:22px;
+      padding:18px;
+    }
+
+    .location-box small{
+      display:block;
+      text-transform:uppercase;
+      letter-spacing:.15em;
+      color:var(--muted);
+      font-weight:800;
+      margin-bottom:6px;
+      font-size:.74rem;
+    }
+
+    .location-box strong,
+    .location-box span{
+      display:block;
+      line-height:1.65;
+    }
+
+    .map-wrap{
+      overflow:hidden;
+      border-radius:30px;
+      box-shadow:var(--shadow);
+      min-height:520px;
+      background:#ddd;
+    }
+
+    .map-wrap iframe{
+      width:100%;
+      height:100%;
+      border:0;
+      min-height:520px;
+    }
+
+    .cta{
+      background:
+        linear-gradient(120deg, rgba(10,19,26,.92), rgba(19,33,43,.84)),
+        url("assets/arrai-playa-sillas.jpg") center/cover no-repeat;
+      color:#fff;
+      border-radius:34px;
+      padding:42px;
+      box-shadow:var(--shadow);
+    }
+
+    .cta-grid{
+      display:grid;
+      grid-template-columns:1fr .72fr;
+      gap:26px;
+      align-items:center;
+    }
+
+    .cta h2{
+      margin:0 0 14px;
+      font-size:clamp(2rem, 5vw, 3.5rem);
+      line-height:1.02;
+      letter-spacing:-.05em;
+    }
+
+    .cta p{
+      margin:0;
+      color:rgba(255,255,255,.78);
+      line-height:1.8;
+      max-width:640px;
+    }
+
+    .cta-panel{
+      background:#fff;
+      color:var(--text);
+      border-radius:28px;
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .cta-panel small{
+      display:block;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      font-weight:800;
+      margin-bottom:10px;
+    }
+
+    .cta-panel .stack-btns{
+      display:grid;
+      gap:12px;
+      margin-top:18px;
+    }
+
+    footer{
+      padding:30px 0 50px;
+    }
+
+    .footer-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      padding-top:24px;
+      border-top:1px solid rgba(0,0,0,.08);
+    }
+
+    .footer-left{
+      display:flex;
+      align-items:center;
+      gap:16px;
+    }
+
+    .footer-logo{
+      width:78px;
+      height:78px;
+      object-fit:contain;
+      opacity:.95;
+    }
+
+    .footer-copy strong{
+      display:block;
+      font-size:1rem;
+      margin-bottom:4px;
+    }
+
+    .footer-copy span{
+      display:block;
+      color:var(--muted);
+      line-height:1.5;
+      font-size:.92rem;
+    }
+
+    .footer-links{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      font-weight:700;
+      color:#433d36;
+    }
+
+    @media (max-width: 1080px){
+      .hero-content,
+      .experience,
+      .location-grid,
+      .cta-grid,
+      .gallery-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero{
+        min-height:auto;
+      }
+
+      .hero-content{
+        padding-top:54px;
+      }
+
+      .hero-card{
+        max-width:780px;
+      }
+
+      .cards-3,
+      .bar-grid,
+      .menu-columns,
+      .experience-copy .stats{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 760px){
+      .topbar-inner{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .nav{
+        gap:12px;
+      }
+
+      .hero h1{
+        font-size:2.8rem;
+      }
+
+      .section{
+        padding:68px 0;
+      }
+
+      .menu-card,
+      .bar-section,
+      .location-card,
+      .cta,
+      .hero-card{
+        padding:22px;
+      }
+
+      .quick-actions{
+        flex-direction:column;
+      }
+
+      .footer-inner{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!--
+    GUARDÁ TUS IMÁGENES EN UNA CARPETA /assets/ CON ESTOS NOMBRES:
+
+    assets/arrai-logo-footer.jpeg
+    assets/arrai-hero-aerea.jpeg
+    assets/arrai-playa-sillas.jpeg
+    assets/arrai-cartel-playa.jpeg
+    assets/arrai-vista-deck.jpeg
+    assets/arrai-local-exterior.jpeg
+    assets/arrai-pulpitos.jpeg
+    assets/arrai-gazpacho.jpeg
+    assets/arrai-ensalada-verano.jpeg
+    assets/arrai-rabas.jpeg
+    assets/arrai-camarones-ajillo.jpeg
+    assets/arrai-miniaturas-pescado.jpeg
+  -->
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#inicio">
+        <img class="brand-mark" src="assets/arrai-logo-footer.jpeg" alt="Logo Arrai Beach" />
+        <div class="brand-copy">
+          <strong>Arrai Beach</strong>
+          <span>Punta del Diablo · Playa de la Viuda</span>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="#experiencia">Experiencia</a>
+        <a href="#galeria">Galería</a>
+        <a href="#carta">Carta</a>
+        <a href="#ubicacion">Ubicación</a>
+        <a href="#reservas">Reservas</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <img class="hero-bg" src="assets/arrai-cartel-playa.jpeg" alt="Cartel de Arrai Beach en la playa" />
+      <div class="hero-overlay"></div>
+
+      <div class="container hero-content">
+        <div class="hero-copy">
+          <span class="eyebrow">Beach bar · cocina de mar · sunset</span>
+          <h1>Comé frente al mar en Arrai Beach.</h1>
+          <p>
+            Un parador sobre la arena en Playa de la Viuda, Punta del Diablo.
+            Tapeo, cocina de mar, sándwiches, ensaladas, postres y tragos para
+            vivir el verano con vista abierta al océano.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://wa.me/59899302517?text=Hola%20Arrai%20%F0%9F%91%8B%20Quiero%20reservar%20una%20mesa." target="_blank" rel="noreferrer">
+              Reservar por WhatsApp
+            </a>
+            <a class="btn btn-secondary" href="#carta">
+              Ver carta completa
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card-grid">
+            <div class="mini-box">
+              <strong>Ubicación</strong>
+              Playa de la Viuda, Punta del Diablo.
+            </div>
+            <div class="mini-box">
+              <strong>Ambiente</strong>
+              Parador de playa con vista directa al mar.
+            </div>
+            <div class="mini-box">
+              <strong>Cocina</strong>
+              Mariscos, pesca, tapeo y platos frescos.
+            </div>
+            <div class="mini-box">
+              <strong>Reservas</strong>
+              WhatsApp y llamada directa.
+            </div>
+          </div>
+
+          <div class="quick-box">
+            <small>Reserva rápida</small>
+            <h3>+598 99 302 517</h3>
+            <p>
+              Ideal para almuerzo, sunset o cena de verano. Consultá disponibilidad y horario por mensaje.
+            </p>
+            <div class="quick-actions">
+              <a class="btn btn-dark" href="https://wa.me/59899302517?text=Hola%20Arrai%20%F0%9F%91%8B%20Quiero%20reservar%20una%20mesa." target="_blank" rel="noreferrer">WhatsApp</a>
+              <a class="btn btn-outline" href="tel:+59899302517">Llamar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experiencia">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">La experiencia Arrai</span>
+          <h2>Mar, buena cocina y un deck con vista abierta a Playa de la Viuda.</h2>
+          <p>
+            Arrai Beach combina la identidad de un parador costero con una propuesta gastronómica fresca,
+            enfocada en pesca, mariscos, platos de temporada y tapeo para compartir. Todo con el océano de frente
+            y una estética simple, relajada y veraniega.
+          </p>
+        </div>
+
+        <div class="experience">
+          <div class="experience-copy">
+            <div class="stats">
+              <div class="stat">
+                <strong>Playa</strong>
+                <span>Ubicado directamente sobre la arena en Punta del Diablo.</span>
+              </div>
+              <div class="stat">
+                <strong>Carta real</strong>
+                <span>Con tapeo, principales, sándwiches, ensaladas, postres y bar.</span>
+              </div>
+              <div class="stat">
+                <strong>Sunset</strong>
+                <span>Perfecto para almuerzo tardío, tarde de playa o atardecer.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery-grid">
+            <div class="photo tall">
+              <img src="assets/arrai-vista-deck.jpeg" alt="Vista del deck de Arrai Beach frente al mar" />
+              <div class="photo-caption">Deck con vista al mar y mesas frente a Playa de la Viuda.</div>
+            </div>
+            <div class="stack">
+              <div class="photo medium">
+                <img src="assets/arrai-hero-aerea.jpeg" alt="Vista aérea de Arrai Beach y Playa de la Viuda" />
+      <div class="hero-overlay"></div>
+                <div class="photo-caption">Acceso directo desde la playa.</div>
+              </div>
+              <div class="photo medium">
+                <img src="assets/arrai-local-exterior.jpeg" alt="Exterior del local Arrai Beach" />
+                <div class="photo-caption">Parador sobre la arena con estructura abierta y relajada.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="galeria">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Galería</span>
+          <h2>Platos y postales reales del lugar.</h2>
+          <p>
+            Una selección de fotos del parador y de su propuesta gastronómica, pensada para que la landing
+            transmita sabor, playa y experiencia de marca desde el primer scroll.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="stack">
+            <div class="photo medium">
+              <img src="assets/arrai-pulpitos.jpeg" alt="Pulpitos de Arrai Beach" />
+              <div class="photo-caption">Pulpitos con mojo romesco y papas doradas.</div>
+            </div>
+            <div class="photo medium">
+              <img src="assets/arrai-rabas.jpeg" alt="Rabas servidas en Arrai Beach" />
+              <div class="photo-caption">Rabas crocantes con limón y mayo provenzal.</div>
+            </div>
+          </div>
+
+          <div class="stack">
+            <div class="photo medium">
+              <img src="assets/arrai-gazpacho.jpeg" alt="Gazpacho servido en Arrai Beach" />
+              <div class="photo-caption">Gazpacho con melón, fresco y perfecto para el verano.</div>
+            </div>
+            <div class="photo medium">
+              <img src="assets/arrai-ensalada-verano.jpeg" alt="Ensalada de verano de Arrai Beach" />
+              <div class="photo-caption">Ensalada de verano con tomate, durazno, ricotta y albahaca.</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="cards-3">
+          <div class="info-card">
+            <h3>Tapeo playero</h3>
+            <p>
+              Rabas, miniaturas de pescado, croquetas, camarones y platos para compartir al ritmo del mar.
+            </p>
+          </div>
+          <div class="info-card">
+            <h3>Cocina de mar</h3>
+            <p>
+              Pesca del día, arroz meloso de mariscos, mejillones, pulpitos y otras opciones frescas de temporada.
+            </p>
+          </div>
+          <div class="info-card">
+            <h3>Plan completo</h3>
+            <p>
+              Almuerzo, tarde de playa, tragos y sunset en un espacio con vista abierta al océano.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="carta">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Carta</span>
+          <h2>La carta completa de Arrai Beach.</h2>
+          <p>
+            Menú cargado a partir de la carta que compartiste, con precios y descripciones visibles
+            para que la página quede lista para mostrar o publicar.
+          </p>
+        </div>
+
+        <div class="menu-wrap">
+          <div class="menu-columns">
+            <article class="menu-card">
+              <h3>Tapeo</h3>
+              <div class="menu-list">
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Gazpacho con melón</span>
+                    <span class="menu-price">$480</span>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Miniaturas de pescado</span>
+                    <span class="menu-price">$700</span>
+                  </div>
+                  <div class="menu-desc">Con salsa tártara.</div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Camarones al ajillo</span>
+                    <span class="menu-price">$1100</span>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Croquetas de maíz</span>
+                    <span class="menu-price">$650</span>
+                  </div>
+                  <div class="menu-desc">Con salsa tatemada.</div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Rabas</span>
+                    <span class="menu-price">$770</span>
+                  </div>
+                  <div class="menu-desc">Con mayonesa provenzal.</div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Agua chile de camarones</span>
+                    <span class="menu-price">$950</span>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Tartar de pesca blanca</span>
+                    <span class="menu-price">$980</span>
+                  </div>
+                  <div class="menu-desc">Lenguado con papas paille.</div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Camarones crocantes</span>
+                    <span class="menu-price">$1200</span>
+                  </div>
+                  <div class="menu-desc">Con puré de palta, cilantro y criolla.</div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Papas fritas</span>
+                    <span class="menu-price">$470</span>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Panera</span>
+                    <span class="menu-price">$300</span>
+                  </div>
+                  <div class="menu-desc">Grisines, focaccia, mini panes y hummus de porotos negros.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="menu-card">
+              <h3>Principales</h3>
+              <div class="menu-list">
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Pulpitos</span>
+                    <span class="menu-price">$1500</span>
+                  </div>
+                  <div class="menu-desc">Mojo romesco y papas doradas.</div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Mejillones a la provenzal</span>
+                    <span class="menu-price">$1100</span>
+                  </div>
+                  <div class="menu-desc">Con papas fritas.</div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Pesca del día</span>
+                    <span class="menu-price">$1000</span>
+                  </div>
+                  <div class="menu-desc">Manteca cítrica de hierbas, guarnición a elección: papas fritas o arroz y verdes.</div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Berenjena ahumada</span>
+                    <span class="menu-price">$900</span>
+                  </div>
+                  <div class="menu-desc">Trigo burgol, salsa de yogurt, pepino, ensalada de hierbas y frutos secos.</div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Arroz meloso de mariscos</span>
+                    <span class="menu-price">$1150</span>
+                  </div>
+                  <div class="menu-desc">Con allioli de morrones asados.</div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Finito de cuadril</span>
+                    <span class="menu-price">$950</span>
+                  </div>
+                  <div class="menu-desc">Fritas y salsa criolla.</div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="menu-columns">
+            <article class="menu-card">
+              <h3>Sándwiches</h3>
+              <div class="menu-list">
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Milanesa de pescado</span>
+                    <span class="menu-price">$800</span>
+                  </div>
+                  <div class="menu-desc">Con salsa tártara, lechuga, tomate y fritas.</div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Boccata de rabas de calamar</span>
+                    <span class="menu-price">$900</span>
+                  </div>
+                  <div class="menu-desc">Lactonesa de limón confitado, verdes, tomate, hierbas frescas, cebolla colorada y fritas.</div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Chivito de lomo</span>
+                    <span class="menu-price">$950</span>
+                  </div>
+                  <div class="menu-desc">Jamón, muzzarella, mayonesa, panceta crocante, lechuga, tomate y fritas.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="menu-card">
+              <h3>Ensaladas</h3>
+              <div class="menu-list">
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Ensalada de verano</span>
+                    <span class="menu-price">$850</span>
+                  </div>
+                  <div class="menu-desc">Tomates, durazno, ricotta y albahaca.</div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Ensalada de pollo</span>
+                    <span class="menu-price">$900</span>
+                  </div>
+                  <div class="menu-desc">Hojas verdes, zanahoria, palta, maíz, pollo apanado en cereales, aderezo cremoso de hierbas y quinoa pop.</div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Tabulé</span>
+                    <span class="menu-price">$850</span>
+                  </div>
+                  <div class="menu-desc">Trigo bulgur, tomate, pepino, cebolla colorada, hierbas frescas y olivas.</div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="menu-columns">
+            <article class="menu-card">
+              <h3>Postres</h3>
+              <div class="menu-list">
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Panqueques con dulce de leche</span>
+                    <span class="menu-price">$500</span>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Torta vasca</span>
+                    <span class="menu-price">$600</span>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Mousse de chocolate</span>
+                    <span class="menu-price">$600</span>
+                  </div>
+                  <div class="menu-desc">Con caramelo de miso y almendras tostadas.</div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="menu-top">
+                    <span class="menu-name">Pavlova de coco</span>
+                    <span class="menu-price">$600</span>
+                  </div>
+                  <div class="menu-desc">Curd de lima, crema y fruta fresca.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="bar-section">
+              <h3 style="margin:0;font-size:1.9rem;letter-spacing:-.04em;">Cócteles & bebidas</h3>
+              <p style="margin:12px 0 0;color:rgba(255,255,255,.78);line-height:1.75;">
+                Sumamos una sección de bar basada en la identidad pública del lugar: playa, sunset, caipirinhas,
+                cócteles de autor, vinos, cervezas y bebidas frescas para acompañar mariscos y cocina de verano.
+              </p>
+
+              <div class="bar-grid">
+                <div class="bar-card">
+                  <h4>Caipirinhas & tragos</h4>
+                  <p>
+                    La caipirinha es una de las especialidades asociadas a Arrai. Se complementa con selección
+                    de tragos clásicos y cócteles pensados para el atardecer.
+                  </p>
+                </div>
+
+                <div class="bar-card">
+                  <h4>Vinos & cervezas</h4>
+                  <p>
+                    Blancos, rosados, tintos y cervezas frías para acompañar rabas, pesca, arroz meloso o tapeo.
+                  </p>
+                </div>
+
+                <div class="bar-card">
+                  <h4>Bebidas frescas</h4>
+                  <p>
+                    Agua, refrescos y opciones livianas para playa, almuerzo o media tarde frente al mar.
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="ubicacion">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Ubicación</span>
+          <h2>Playa de la Viuda, Punta del Diablo.</h2>
+          <p>
+            Un punto ideal para comer bien con los pies cerca de la arena y vista abierta al mar.
+            Perfecto para ir después de la playa, al mediodía o para quedarse al sunset.
+          </p>
+        </div>
+
+        <div class="location-grid">
+          <div class="location-card">
+            <div class="location-box">
+              <small>Dirección</small>
+              <strong>Playa de la Viuda</strong>
+              <span>Punta del Diablo, Rocha, Uruguay</span>
+            </div>
+
+            <div class="location-box">
+              <small>Contacto</small>
+              <strong>+598 99 302 517</strong>
+              <span>Reservas y consultas por WhatsApp o llamada.</span>
+            </div>
+
+            <div class="location-box">
+              <small>Ideal para</small>
+              <span>Almuerzo, tarde de playa, tapeo, mariscos y sunset.</span>
+            </div>
+
+            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:4px;">
+              <a class="btn btn-dark" href="https://wa.me/59899302517?text=Hola%20Arrai%20%F0%9F%91%8B%20Quiero%20reservar%20una%20mesa." target="_blank" rel="noreferrer">Reservar ahora</a>
+              <a class="btn btn-outline" href="https://www.google.com/maps/search/?api=1&query=Arrai+Beach+Bar+Playa+de+la+Viuda+Punta+del+Diablo" target="_blank" rel="noreferrer">Abrir en Maps</a>
+            </div>
+          </div>
+
+          <div class="map-wrap">
+            <iframe
+              title="Mapa de Arrai Beach"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=Arrai%20Beach%20Bar%20Playa%20de%20la%20Viuda%20Punta%20del%20Diablo&z=15&output=embed">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reservas">
+      <div class="container">
+        <div class="cta">
+          <div class="cta-grid">
+            <div>
+              <h2>Reservá tu mesa y viví Arrai frente al océano.</h2>
+              <p>
+                Cocina de mar, playa, tragos y una experiencia relajada en uno de los paradores más lindos de Punta del Diablo.
+                Escribí por WhatsApp y coordiná tu visita.
+              </p>
+            </div>
+
+            <div class="cta-panel">
+              <small>Acciones rápidas</small>
+              <div class="stack-btns">
+                <a class="btn btn-dark" href="https://wa.me/59899302517?text=Hola%20Arrai%20%F0%9F%91%8B%20Quiero%20reservar%20una%20mesa." target="_blank" rel="noreferrer">
+                  Reservar por WhatsApp
+                </a>
+                <a class="btn btn-outline" href="tel:+59899302517">
+                  Llamar al restaurante
+                </a>
+                <a class="btn btn-outline" href="#carta">
+                  Ver carta completa
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <img class="footer-logo" src="assets/arrai-logo-footer.jpg" alt="Logo de Arrai Beach" />
+        <div class="footer-copy">
+          <strong>Arrai Beach</strong>
+          <span>Punta del Diablo · Playa de la Viuda</span>
+          <span>Reservas: +598 99 302 517</span>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#carta">Carta</a>
+        <a href="#ubicacion">Ubicación</a>
+        <a href="https://www.instagram.com/arraibeach/" target="_blank" rel="noreferrer">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
