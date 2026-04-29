@@ -24,9 +24,9 @@
   --ocean-deep: #1a4a58;
   --olive: #6b7c4e;
   --olive-light: #8a9d62;
-  --coral: #d4562a;
-  --coral-light: #e8734a;
-  --amber: #c8852a;
+  --coral: #c2185b;
+  --coral-light: #e91e8c;
+  --amber: #00897b;
   --charcoal: #1e1e1e;
   --charcoal-soft: #2d2d2d;
   --text-dark: #1a1a1a;
@@ -118,12 +118,14 @@ button { border: none; cursor: pointer; font-family: var(--font-sans); }
   width: 42px;
   height: 28px;
   opacity: 0.9;
-  filter: brightness(0) invert(1);
+  filter: invert(1);
+  mix-blend-mode: screen;
   transition: var(--transition);
 }
 
 #navbar.scrolled .nav-fish {
-  filter: brightness(0);
+  filter: none;
+  mix-blend-mode: multiply;
 }
 
 .nav-brand {
@@ -283,7 +285,7 @@ button { border: none; cursor: pointer; font-family: var(--font-sans); }
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url('arrai-hero-aerea.jpeg');
+  background-image: url('assets/arrai-hero-aerea.jpeg');
   background-size: cover;
   background-position: center 40%;
   transform: scale(1.05);
@@ -334,7 +336,8 @@ button { border: none; cursor: pointer; font-family: var(--font-sans); }
 .hero-logo-img {
   width: 80px;
   margin: 0 auto 20px;
-  filter: brightness(0) invert(1);
+  filter: invert(1);
+  mix-blend-mode: screen;
   opacity: 0.9;
   animation: floatLogo 4s ease-in-out infinite;
 }
@@ -865,7 +868,7 @@ button { border: none; cursor: pointer; font-family: var(--font-sans); }
 
 .tag-mar { background: rgba(44,110,127,0.1); color: var(--ocean); }
 .tag-fresco { background: rgba(107,124,78,0.1); color: var(--olive); }
-.tag-compartir { background: rgba(200,133,42,0.1); color: var(--amber); }
+.tag-compartir { background: rgba(0,137,123,0.1); color: var(--amber); }
 .tag-veg { background: rgba(107,124,78,0.15); color: var(--olive); }
 
 .menu-item-price {
@@ -902,6 +905,7 @@ button { border: none; cursor: pointer; font-family: var(--font-sans); }
   padding: 120px 40px;
   background: var(--charcoal);
   overflow: hidden;
+  position: relative;
 }
 
 .platos-inner {
@@ -1128,8 +1132,8 @@ button { border: none; cursor: pointer; font-family: var(--font-sans); }
 
 .historia-fish {
   width: 52px;
-  opacity: 0.6;
-  filter: brightness(0);
+  opacity: 0.75;
+  mix-blend-mode: multiply;
 }
 
 .historia-firma-text {
@@ -1160,7 +1164,7 @@ button { border: none; cursor: pointer; font-family: var(--font-sans); }
 .musica-bg {
   position: absolute;
   inset: 0;
-  background-image: url('arrai-musica.jpeg');
+  background-image: url('assets/arrai-musica.jpeg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -1172,7 +1176,7 @@ button { border: none; cursor: pointer; font-family: var(--font-sans); }
   background: linear-gradient(
     135deg,
     rgba(10,20,30,0.82) 0%,
-    rgba(180,90,20,0.35) 100%
+    rgba(194,24,91,0.30) 100%
   );
 }
 
@@ -1612,8 +1616,9 @@ footer {
 
 .footer-fish {
   width: 60px;
-  filter: brightness(0) invert(1);
-  opacity: 0.6;
+  filter: invert(1);
+  mix-blend-mode: screen;
+  opacity: 0.7;
   margin-bottom: 20px;
 }
 
@@ -1842,6 +1847,157 @@ footer {
     grid-template-columns: 1fr;
     height: auto;
   }
+}
+
+/* =============================================
+   TROPICAL ACCENTS
+   ============================================= */
+
+/* Hero — ghost palm fronds in corners */
+#hero::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  left: -80px;
+  width: 420px;
+  height: 600px;
+  border-radius: 0 100% 0 100%;
+  background: rgba(255,255,255,0.05);
+  transform: rotate(20deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+#hero::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  right: -80px;
+  width: 380px;
+  height: 550px;
+  border-radius: 100% 0 100% 0;
+  background: rgba(255,255,255,0.04);
+  transform: rotate(15deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Historia — botanical leaf accent (left) */
+#historia::before {
+  content: '';
+  position: absolute;
+  top: 60px;
+  left: -50px;
+  width: 220px;
+  height: 340px;
+  border-radius: 0 100% 0 100%;
+  background: rgba(0,137,123,0.055);
+  transform: rotate(-15deg);
+  pointer-events: none;
+}
+
+/* Platos — tropical leaf (dark section) */
+#platos::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  right: -40px;
+  width: 280px;
+  height: 420px;
+  border-radius: 100% 0 100% 0;
+  background: rgba(194,24,91,0.07);
+  transform: rotate(12deg);
+  pointer-events: none;
+}
+
+/* Musica — palm frond watermark */
+#musica::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: -50px;
+  width: 300px;
+  height: 460px;
+  border-radius: 0 100% 0 100%;
+  background: rgba(255,255,255,0.04);
+  transform: rotate(-18deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+#musica::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  right: -40px;
+  width: 260px;
+  height: 380px;
+  border-radius: 100% 0 100% 0;
+  background: rgba(255,255,255,0.03);
+  transform: rotate(10deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Footer — leaf watermark */
+footer {
+  position: relative;
+  overflow: hidden;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: -50px;
+  width: 320px;
+  height: 460px;
+  border-radius: 0 100% 0 100%;
+  background: rgba(255,255,255,0.025);
+  transform: rotate(12deg);
+  pointer-events: none;
+}
+
+footer::after {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -40px;
+  width: 260px;
+  height: 380px;
+  border-radius: 100% 0 100% 0;
+  background: rgba(194,24,91,0.06);
+  transform: rotate(-8deg);
+  pointer-events: none;
+}
+
+/* Tropical gradient line — top border of autoridad */
+#autoridad::before {
+  background: linear-gradient(90deg, transparent, var(--coral), var(--amber), transparent) !important;
+}
+
+/* Tropical gradient on primary CTA buttons */
+.btn-primary {
+  background: linear-gradient(135deg, var(--coral) 0%, var(--coral-light) 100%);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--coral-light) 0%, var(--coral) 100%);
+}
+
+/* Tropical gradient on footer reserve button */
+.footer-btn-reservar {
+  background: linear-gradient(135deg, var(--coral) 0%, var(--coral-light) 100%);
+  border-color: transparent;
+}
+
+.footer-btn-reservar:hover {
+  background: linear-gradient(135deg, var(--coral-light) 0%, var(--coral) 100%);
+}
+
+/* Tropical jade border highlight on card hover */
+.menu-item:hover {
+  border-left: 3px solid var(--amber);
 }
 </style>
 </head>
